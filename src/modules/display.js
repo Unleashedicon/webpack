@@ -40,7 +40,7 @@ const displaylist = (tasks) => {
 
       const trashIcon = icon({ prefix: 'fas', iconName: 'trash-alt' });
       const trashContainer = document.createElement('span');
-      trashContainer.classList.add('icon', 'icon-trash', 'invisible');
+      trashContainer.classList.add('icon', 'icon-trash', 'hidden');
       trashContainer.innerHTML = trashIcon.html;
       trashContainer.addEventListener('click', (event) => {
         deleteTask(event, tasks);
@@ -51,11 +51,42 @@ const displaylist = (tasks) => {
       const ellipsisContainer = document.createElement('span');
       ellipsisContainer.classList.add('icon', 'icon-ellipsis');
       ellipsisContainer.innerHTML = ellipsisIcon.html;
+
+      const handleClickOutside = (event) => {
+        const isTrashIcon = event.target === trashContainer
+          || trashContainer.contains(event.target);
+
+        const isEllipsisIcon = event.target === ellipsisContainer
+          || ellipsisContainer.contains(event.target);
+
+        const listItem = event.target.closest('li');
+        if (listItem) {
+          if (!isTrashIcon && !isEllipsisIcon) {
+            ellipsisContainer.classList.remove('hidden');
+            trashContainer.classList.add('hidden');
+            if (listItem.classList.contains('highlighted')) {
+              listItem.classList.remove('highlighted');
+            }
+          } else if (isEllipsisIcon) {
+            ellipsisContainer.classList.add('hidden');
+            trashContainer.classList.remove('hidden');
+            listItem.classList.add('highlighted');
+          }
+        }
+      };
+
       ellipsisContainer.addEventListener('click', (event) => {
-        ellipsisContainer.classList.add('invisible');
-        trashContainer.classList.remove('invisible');
+        ellipsisContainer.classList.add('hidden');
+        trashContainer.classList.remove('hidden');
         event.target.closest('li').classList.add('highlighted');
-        editTaskDescription(event, tasks, ellipsisContainer, trashContainer);
+        editTaskDescription(event, tasks);
+        document.addEventListener('click', handleClickOutside);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.keyCode === 13) { // Enter key
+          handleClickOutside(event);
+        }
       });
 
       tasklistitem.appendChild(checkbox);

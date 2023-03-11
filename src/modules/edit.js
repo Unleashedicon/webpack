@@ -1,6 +1,6 @@
 import save from './save.js';
 
-export const editTaskDescription = (event, tasks, ellipsisContainer, trashContainer) => {
+export const editTaskDescription = (event, tasks) => {
   const taskDescription = event.target.closest('li');
   const label = taskDescription.querySelector('label');
 
@@ -9,22 +9,29 @@ export const editTaskDescription = (event, tasks, ellipsisContainer, trashContai
   label.classList.add('text-edit');
   label.focus();
 
+  const range = document.createRange();
+  const selection = window.getSelection();
+  range.selectNodeContents(label);
+  range.collapse(false);
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  const originalLabel = label.textContent.trim();
   const saveLabel = () => {
     label.contentEditable = false;
     const taskItems = Array.from(document.querySelectorAll('#list li'));
     const taskId = taskItems.indexOf(taskDescription);
-    if (tasks[taskId]) {
-      tasks[taskId].description = label.textContent.trim();
+    const newLabel = label.textContent.trim();
+    if (newLabel !== originalLabel && tasks[taskId]) {
+      tasks[taskId].description = newLabel;
       save(tasks);
     }
-    ellipsisContainer.classList.remove('invisible');
-    trashContainer.classList.add('invisible');
-    event.target.closest('li').classList.remove('highlighted');
   };
 
   label.addEventListener('blur', saveLabel);
   label.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
+      e.preventDefault();
       saveLabel();
     }
   });

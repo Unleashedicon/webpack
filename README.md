@@ -74,6 +74,14 @@ my project is a simple HTML CSS and JAVASCRIPT page whose primary goal is is to 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LIVE DEMO -->
+
+## 🚀 Live Demo 
+<br><br><a name="live-demo">[live link](https://effervescent-gingersnap-35c467.netlify.app/)</a>
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- GETTING STARTED -->
 
 ## 💻 Installation and setup <a name="getting-started"></a>
@@ -156,6 +164,8 @@ Example:
  -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- AUTHORS -->
 

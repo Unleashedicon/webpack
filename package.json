@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/Unleashedicon/webpack/issues"
   },
-  "homepage": "https://github.com/Unleashedicon/webpack",
+  "homepage": "https://unleashedicon.github.io/webpack/dist/",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.3",

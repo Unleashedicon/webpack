@@ -44,12 +44,18 @@ export const deleteTask = (event, tasks) => {
   const taskId = taskItems.indexOf(task);
 
   tasks.splice(taskId, 1);
+  task.remove();
+
+  // Update indexes of the remaining tasks
   for (let i = taskId; i < taskItems.length; i += 1) {
-    taskItems[i].id = `task-${i}`;
-    taskItems[i].querySelector('input[type="checkbox"]').id = `task-${i}-checkbox`;
-    taskItems[i].querySelector('label').htmlFor = `task-${i}-checkbox`;
+    const currentTask = taskItems[i];
+    const newTaskId = i;
+
+    currentTask.querySelector('input[type="checkbox"]').id = `task-${newTaskId}`;
+    currentTask.querySelector('label').htmlFor = `task-${newTaskId}`;
   }
 
-  task.remove();
   save(tasks);
 };
+
+

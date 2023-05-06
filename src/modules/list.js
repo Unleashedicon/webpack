@@ -23,6 +23,19 @@ class TaskList {
     this.displaylist();
   }
 
+  deleteTask(index) {
+    this.tasks.splice(index, 1);
+    this.updateIndexes();
+    this.save();
+    this.displaylist();
+  }
+
+  updateIndexes() {
+    for (let i = 0; i < this.tasks.length; i++) {
+      this.tasks[i].index = i;
+    }
+  }
+
   removeTasks() {
     removeTasks(this.tasks);
     this.displaylist();
@@ -30,7 +43,7 @@ class TaskList {
   }
 
   displaylist() {
-    displaylist(this.tasks);
+    displaylist(this.tasks, this.deleteTask.bind(this));
   }
 }
 

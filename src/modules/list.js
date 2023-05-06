@@ -31,7 +31,7 @@ class TaskList {
   }
 
   updateIndexes() {
-    for (let i = 0; i < this.tasks.length; i++) {
+    for (let i = 0; i < this.tasks.length; i += 1) {
       this.tasks[i].index = i;
     }
   }

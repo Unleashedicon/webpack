@@ -57,5 +57,3 @@ export const deleteTask = (event, tasks) => {
 
   save(tasks);
 };
-
-

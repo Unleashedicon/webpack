@@ -1,6 +1,6 @@
 import { library, icon } from '@fortawesome/fontawesome-svg-core';
 import { faTrashAlt, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { editTaskDescription} from './edit.js';
+import { editTaskDescription } from './edit.js';
 import save from './save.js';
 
 library.add(faTrashAlt, faEllipsisV);
@@ -42,7 +42,7 @@ const displaylist = (tasks, deleteTask) => {
       const trashContainer = document.createElement('span');
       trashContainer.classList.add('icon', 'icon-trash', 'hidden');
       trashContainer.innerHTML = trashIcon.html;
-      trashContainer.addEventListener('click', (event) => {
+      trashContainer.addEventListener('click', () => {
         deleteTask(i);
         save(tasks);
       });

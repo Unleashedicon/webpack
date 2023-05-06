@@ -77,7 +77,7 @@ my project is a simple HTML CSS and JAVASCRIPT page whose primary goal is is to 
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo 
-<br><br><a name="live-demo">[live link](https://effervescent-gingersnap-35c467.netlify.app/)</a>
+<br><br><a name="live-demo">[live link](https://deploy-preview-7--effervescent-gingersnap-35c467.netlify.app/)</a>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
